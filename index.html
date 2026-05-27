@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cream:#ffffff;
+  --wine:#6b2234;
+  --black:#141414;
+  --marun:#6f3443;
+  --white:#ffffff;
+}
+body{overflow:hidden;font-family:'Jost',sans-serif;color:var(--white);}
+
+.page{
+  width:100%;height:100vh;
+  position:absolute;top:0;left:0;
+  display:flex;justify-content:center;align-items:center;
+  transition:opacity .9s ease,transform .9s ease;
+}
+.hidden{opacity:0;pointer-events:none;transform:scale(1.04);}
+.active{opacity:1;pointer-events:auto;transform:scale(1);}
+
+/* ══ NEXT BTN (dark pages) ══ */
+.nxt{
+  position:absolute;bottom:32px;right:50px;
+  padding:9px 26px;border:1.5px solid rgba(255,255,255,.3);
+  border-radius:50px;background:transparent;color:var(--white);
+  cursor:pointer;font-family:'Jost',sans-serif;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  transition:transform .3s,border-color .3s;
+}
+.nxt:hover{transform:scale(1.06);border-color:rgba(255,255,255,.7);}
+
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-13px);}}
+@keyframes blink{0%,100%{opacity:.3;}50%{opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* ════════════════════════════════════════
+   PAGE 1 — cream, teks KIRI, foto KANAN
+════════════════════════════════════════ */
+.page1{background:var(--cream);padding:60px 100px;}
+.p1-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;max-width:1000px;
+  gap:60px;
+}
+.p1-left{flex:1;}
+.p1-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:600;
+  font-size:clamp(46px,6vw,82px);
+  line-height:1.0;
+  color:var(--wine);
+  animation:fadeUp 1.2s ease forwards;
+}
+.p1-sub{
+  margin-top:14px;
+  color:var(--wine);letter-spacing:5px;
+  font-size:10px;opacity:.6;text-transform:uppercase;
+}
+.open-btn{
+  margin-top:34px;padding:12px 34px;
+  border:none;border-radius:50px;
+  background:var(--wine);color:var(--white);
+  cursor:pointer;font-family:'Jost',sans-serif;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  transition:transform .3s,box-shadow .3s;
+  box-shadow:0 6px 22px rgba(107,34,52,.35);
+}
+.open-btn:hover{transform:scale(1.07);}
+.p1-right{flex-shrink:0;}
+.p1-img{
+  width:clamp(260px,30vw,400px);
+  object-fit:contain;
+  animation:float 5s ease-in-out infinite;
+  filter:drop-shadow(0 20px 40px rgba(107,34,52,.2));
+  display:block;
+}
+
+/* ════════════════════════════════════════
+   PAGE 2a — hitam, teks italic KIRI, polaroid scatter KANAN
+════════════════════════════════════════ */
+.page2a{background:var(--black);padding:60px 100px;}
+.p2a-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;max-width:980px;
+  gap:60px;
+}
+.p2a-left{flex:1;min-width:240px;}
+.p2a-left p{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(16px,1.8vw,21px);
+  line-height:2;color:#ddd;
+}
+.p2a-left p .hl{color:#c07080;}
+
+/* scattered polaroids */
+.scatter{position:relative;width:340px;height:380px;flex-shrink:0;}
+.pol{
+  position:absolute;background:var(--white);
+  padding:8px 8px 28px;
+  box-shadow:0 12px 28px rgba(0,0,0,.7);
+  transition:transform .35s;cursor:pointer;
+  z-index:1;
+}
+.pol img{width:128px;height:128px;object-fit:cover;display:block;background:#b0a0a5;}
+.pol:hover{transform:scale(1.06) rotate(0deg)!important;z-index:10;}
+.pol.a{top:0;   left:0;    transform:rotate(-9deg);}
+.pol.b{top:10px;left:135px;transform:rotate(6deg);}
+.pol.c{top:170px;left:20px;transform:rotate(4deg);}
+.pol.d{top:180px;left:160px;transform:rotate(-7deg);}
+.pol.e{top:65px; left:68px; transform:rotate(2deg);z-index:5;}
+
+/* ════════════════════════════════════════
+   PAGE 2b — hitam, foto wajah tengah + kata-kata
+════════════════════════════════════════ */
+.page2b{background:var(--black);padding:40px;}
+.face-wrap{
+  position:relative;
+  width:min(520px,90vw);height:520px;
+  display:flex;justify-content:center;align-items:center;
+}
+.face-img{
+  width:240px;object-fit:contain;z-index:5;
+  animation:float 5s ease-in-out infinite;
+  filter:drop-shadow(0 0 50px rgba(180,80,100,.5));
+}
+.word{
+  position:absolute;
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;color:rgba(255,255,255,.72);
+  animation:blink 3.5s ease-in-out infinite;white-space:nowrap;
+}
+.wA{top:3%;left:42%;}
+.wB{top:17%;right:2%;}
+.wC{bottom:17%;right:3%;}
+.wD{bottom:3%;left:40%;}
+.wE{bottom:22%;left:1%;}
+.wF{top:22%;left:1%;}
+.wG{top:48%;right:-4%;}
+.wH{top:48%;left:-4%;}
+.star{position:absolute;font-size:13px;animation:blink 2.5s ease-in-out infinite;color:#c8a0a8;}
+.s1{top:8%;left:30%;animation-delay:.3s;}
+.s2{top:12%;left:62%;animation-delay:.7s;}
+.s3{top:55%;left:14%;animation-delay:1s;}
+.s4{top:60%;right:9%;animation-delay:.5s;}
+.s5{bottom:18%;left:34%;animation-delay:1.2s;}
+.s6{bottom:9%;right:27%;animation-delay:.9s;}
+
+/* ════════════════════════════════════════
+   PAGE 2c — hitam, message card marun + strip foto b&w
+════════════════════════════════════════ */
+.page2c{
+  background:var(--black);
+  flex-direction:column;padding:40px 80px;gap:28px;
+}
+.msg-card{
+  background:var(--marun);border-radius:20px;
+  padding:38px 46px;max-width:720px;width:100%;
+  box-shadow:0 12px 40px rgba(0,0,0,.6);
+}
+.msg-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:20px;
+  margin-bottom:14px;color:#f0d8de;
+}
+.msg-card p{font-size:13px;line-height:2;color:#e0c8ce;font-weight:300;}
+.strip{display:flex;gap:10px;justify-content:center;}
+.strip img{
+  width:88px;height:88px;object-fit:cover;
+  filter:grayscale(100%);border-radius:4px;
+  box-shadow:0 4px 14px rgba(0,0,0,.6);
+  transition:filter .3s;
+}
+.strip img:hover{filter:grayscale(0%);}
+.btn-row{display:flex;justify-content:flex-end;width:100%;max-width:720px;}
+
+/* ════════════════════════════════════════
+   PAGE 3 — marun, foto KIRI besar, lagu KANAN
+════════════════════════════════════════ */
+.page3{background:var(--marun);padding:50px 100px;}
+.p3-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;max-width:980px;
+  gap:70px;
+}
+
+/* foto kiri — BESAR, PNG menyatu dengan marun */
+.p3-left{flex-shrink:0;}
+.p3-img{
+  width:clamp(200px,24vw,300px);
+  object-fit:contain;
+  animation:float 5s ease-in-out infinite;
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,.5));
+  display:block;
+}
+
+/* lagu kanan */
+.p3-right{flex:1;}
+.song-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(28px,3.2vw,46px);
+  line-height:1.15;margin-bottom:6px;
+}
+.song-sub{
+  font-size:10px;letter-spacing:4px;opacity:.55;
+  text-transform:uppercase;margin-bottom:28px;display:block;
+}
+.song-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.song-card{
+  border-radius:10px;
+  overflow:hidden;
+  text-align:left;
+  transition:transform .35s,filter .35s;
+  cursor:default;
+  background:rgba(0,0,0,.2);
+}
+.song-card:hover{transform:scale(1.03);filter:brightness(1.1);}
+.song-card .cover{
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  display:block;
+  background:#9a6070;
+}
+.song-card .sinfo{
+  padding:10px 12px 12px;
+  background:rgba(111,52,67,.7);
+}
+.song-card .sname{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;
+  line-height:1.2;
+  color:#ffffff;
+}
+.song-card .sartist{
+  font-size:9px;
+  letter-spacing:2px;
+  opacity:.6;
+  text-transform:uppercase;
+  margin-top:3px;
+  display:block;
+  color:#ffffff;
+}
+
+/* ══ MOBILE ══ */
+@media(max-width:768px){
+  .page{padding:24px 20px!important;}
+  .p1-inner,.p2a-inner,.p3-inner{flex-direction:column;gap:28px;text-align:center;}
+  .p1-title{font-size:clamp(36px,10vw,52px);}
+  .p1-img{width:200px;}
+  .scatter{width:280px;height:320px;}
+  .pol img{width:106px;height:106px;}
+  .pol.b{left:113px;} .pol.c{top:145px;} .pol.d{top:158px;left:133px;} .pol.e{top:52px;left:55px;}
+  .face-wrap{height:380px;}
+  .face-img{width:180px;}
+  .word{font-size:13px;}
+  .page2c{padding:28px 20px;gap:18px;}
+  .msg-card{padding:26px 20px;}
+  .strip img{width:60px;height:60px;}
+  .p3-img{width:160px;}
+  .song-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — cream, teks kiri, foto kanan -->
+<section class="page page1 active" id="page1">
+  <div class="p1-inner">
+    <div class="p1-left">
+      <h1 class="p1-title">
+        HAPPY<br>
+        BIRTHDAY<br>
+        INDAH<br>
+        SALSABILLAH
+      </h1>
+      <p class="p1-sub">28 - 05 - 2007</p>
+      <button class="open-btn" onclick="goTo('2a')">Open Me</button>
+    </div>
+    <div class="p1-right">
+      <img class="p1-img" src="foto1.png" onerror="this.src='foto1.jpg'" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 2a — hitam, teks kiri, polaroid scatter kanan -->
+<section class="page page2a hidden" id="page2a">
+  <div class="p2a-inner">
+    <div class="p2a-left">
+      <p>
+        I just wanted to put all your photos in one place.
+Some of them might not match perfectly, but I still tried to make everything look nice.
+At the end of the day, they’re still your photos, so the album already feels good enough to keep. 📸
+
+      </p>
+    </div>
+    <div class="scatter">
+      <div class="pol a"><img src="foto2.png" onerror="this.src='foto2.jpg'" alt=""></div>
+      <div class="pol b"><img src="foto3.png" onerror="this.src='foto3.jpg'" alt=""></div>
+      <div class="pol c"><img src="foto4.png" onerror="this.src='foto4.jpg'" alt=""></div>
+      <div class="pol d"><img src="foto5.png" onerror="this.src='foto5.jpg'" alt=""></div>
+      <div class="pol e"><img src="foto6.png" onerror="this.src='foto6.jpg'" alt=""></div>
+    </div>
+  </div>
+  <button class="nxt" onclick="goTo('2b')">next →</button>
+</section>
+
+<!-- PAGE 2b — hitam, foto wajah tengah + kata -->
+<section class="page page2b hidden" id="page2b">
+  <div class="face-wrap">
+    <img class="face-img" src="foto7.png" onerror="this.src='foto7.jpg'" alt="">
+    <div class="word wA">thoughtful</div>
+    <div class="word wB">Loyal</div>
+    <div class="word wC">Calm</div>
+    <div class="word wD">Genuine</div>
+    <div class="word wE">Supportive</div>
+    <div class="word wF">Funny</div>
+    <div class="word wG">Unforgettable</div>
+    <div class="word wH">Warmhearted</div>
+    <div class="star s1">✦</div>
+    <div class="star s2">✦</div>
+    <div class="star s3">✦</div>
+    <div class="star s4">✦</div>
+    <div class="star s5">✦</div>
+    <div class="star s6">✦</div>
+  </div>
+  <button class="nxt" onclick="goTo('2c')">next →</button>
+</section>
+
+<!-- PAGE 2c — hitam, message card marun + strip foto b&w -->
+<section class="page page2c hidden" id="page2c">
+  <div class="msg-card">
+    <h3>Happy Birthday, Indah Salsabillah.</h3>
+    <p>
+      semoga hari-hari billa selalu dipenuhi hal baik, ketemu orang-orang baik, dan semua yang billa usahain bisa tercapai satu-satu.
+makasih udah jadi diri billa yang sekarang, because honestly you are one of the nicest people I know.
+jangan sering sedih, jangan capek sendiri, dan jangan lupa bahagia yaa. cuman ini yang bisa evan kasih untuk billa selebihnya kurang maaf kalau evan ngga bisa buat kata" hehehe
+    </p>
+  </div>
+  <div class="strip">
+    <img src="foto2.png" onerror="this.src='foto2.jpg'" alt="">
+    <img src="foto3.png" onerror="this.src='foto3.jpg'" alt="">
+    <img src="foto4.png" onerror="this.src='foto4.jpg'" alt="">
+    <img src="foto5.png" onerror="this.src='foto5.jpg'" alt="">
+    <img src="foto6.png" onerror="this.src='foto6.jpg'" alt="">
+  </div>
+  <div class="btn-row">
+    <button class="nxt" style="position:static" onclick="goTo(3)">next →</button>
+  </div>
+</section>
+
+<!-- PAGE 3 — marun, foto KIRI besar, lagu KANAN -->
+<section class="page page3 hidden" id="page3">
+  <div class="p3-inner">
+
+    <!-- foto kiri -->
+    <div class="p3-left">
+      <img class="p3-img" src="foto8.png" onerror="this.src='foto8.jpg'" alt="">
+    </div>  
+
+    <!-- lagu kanan -->
+    <div class="p3-right">
+      <h1 class="song-title">Songs that remind<br>me of you</h1>
+      <span class="song-sub">a playlist for you</span>
+      <div class="song-grid">
+        <div class="song-card">
+
+  <img class="cover" src="album2.jpg" alt="">
+  <div class="sinfo">
+    <div class="sname">You!</div>
+    <span class="sartist">LANY</span>
+  </div>
+</div>
+        <div class="song-card">
+  <img class="cover" src="album1.jpg" alt="">
+  <div class="sinfo">
+    <div class="sname">DNA</div>
+    <span class="sartist">LANY</span>
+  </div>
+</div>
+        <div class="song-card">
+  <img class="cover" src="album3.jpg" alt="">
+  <div class="sinfo">
+    <div class="sname">Super Far</div>
+    <span class="sartist">LANY</span>
+  </div>
+</div>
+        <div class="song-card">
+  <img class="cover" src="album4.jpg" alt="">
+  <div class="sinfo">
+    <div class="sname">White Ferrari</div>
+    <span class="sartist">Frank Ocean</span>
+  </div>
+</div>
+        <div class="song-card">
+  <img class="cover" src="album5.jpg" alt="">
+  <div class="sinfo">
+    <div class="sname">Who Knows</div>
+    <span class="sartist">Daniel Caesar</span>
+  </div>
+</div>
+        <div class="song-card">
+  <img class="cover" src="album6.jpg" alt="">
+  <div class="sinfo">
+    <div class="sname">Superficial Love</div>
+    <span class="sartist">Ruth B.</span>
+  </div>
+</div>
+      </div>
+    </div>  
+
+  </div>
+</section>
+
+<script>
+function goTo(n){
+  document.querySelectorAll('.page').forEach(p=>{
+    p.classList.add('hidden');
+    p.classList.remove('active');
+  });
+  const t = document.getElementById('page'+n);
+  t.classList.remove('hidden');
+  t.classList.add('active');
+  if(t.scrollTop!==undefined) t.scrollTop=0;
+}
+</script>
+
+<!-- MUSIK OTOMATIS -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById('bgMusic');
+music.volume = 0.5;
+music.play().catch(()=>{
+  const unlock = ()=>{
+    music.play();
+    document.removeEventListener('click', unlock);
+    document.removeEventListener('touchstart', unlock);
+  };
+  document.addEventListener('click', unlock);
+  document.addEventListener('touchstart', unlock);
+});
+</script>
+</body>
+</html>
+  
