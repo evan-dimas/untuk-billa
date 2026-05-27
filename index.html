@@ -262,24 +262,155 @@ body{overflow:hidden;font-family:'Jost',sans-serif;color:var(--white);}
 }
 
 /* ══ MOBILE ══ */
+/* ══ MOBILE ══ */
 @media(max-width:768px){
-  .page{padding:24px 20px!important;}
-  .p1-inner,.p2a-inner,.p3-inner{flex-direction:column;gap:28px;text-align:center;}
-  .p1-title{font-size:clamp(36px,10vw,52px);}
-  .p1-img{width:200px;}
-  .scatter{width:280px;height:320px;}
-  .pol img{width:106px;height:106px;}
-  .pol.b{left:113px;} .pol.c{top:145px;} .pol.d{top:158px;left:133px;} .pol.e{top:52px;left:55px;}
-  .face-wrap{height:380px;}
-  .face-img{width:180px;}
-  .word{font-size:13px;}
-  .page2c{padding:28px 20px;gap:18px;}
-  .msg-card{padding:26px 20px;}
-  .strip img{width:60px;height:60px;}
-  .song-grid{grid-template-columns:repeat(2,1fr);}
-  .p3-inner{flex-direction:column;gap:20px;}
-  .p3-img{width:140px;}
-  .song-title{font-size:24px;}
+
+  body{
+    overflow-x:hidden;
+  }
+
+  .page{
+    padding:28px 20px !important;
+    height:auto;
+    min-height:100vh;
+    overflow-y:auto;
+  }
+
+  .p1-inner,
+  .p2a-inner,
+  .p3-inner{
+    flex-direction:column;
+    gap:35px;
+    text-align:center;
+  }
+
+  /* PAGE 1 */
+  .p1-title{
+    font-size:clamp(38px,12vw,56px);
+    line-height:1;
+  }
+
+  .p1-sub{
+    letter-spacing:3px;
+  }
+
+  .p1-img{
+    width:210px;
+  }
+
+  .open-btn{
+    margin-top:25px;
+  }
+
+  /* PAGE 2A */
+  .scatter{
+    width:280px;
+    height:320px;
+    transform:scale(.92);
+  }
+
+  .pol img{
+    width:105px;
+    height:105px;
+  }
+
+  .pol.b{left:110px;}
+  .pol.c{top:145px;}
+  .pol.d{top:155px;left:135px;}
+  .pol.e{top:55px;left:58px;}
+
+  .p2a-left p{
+    font-size:16px;
+    line-height:1.8;
+  }
+
+  /* PAGE 2B */
+  .face-wrap{
+    width:100%;
+    height:420px;
+  }
+
+  .face-img{
+    width:180px;
+  }
+
+  .word{
+    font-size:12px;
+  }
+
+  .wA{top:5%;left:38%;}
+  .wB{top:18%;right:2%;}
+  .wC{bottom:20%;right:2%;}
+  .wD{bottom:5%;left:35%;}
+  .wE{bottom:25%;left:2%;}
+  .wF{top:25%;left:2%;}
+  .wG{top:48%;right:0;}
+  .wH{top:48%;left:0;}
+
+  /* PAGE 2C */
+  .page2c{
+    padding:30px 18px;
+    gap:22px;
+  }
+
+  .msg-card{
+    padding:24px 18px;
+    border-radius:18px;
+  }
+
+  .msg-card p{
+    font-size:12px;
+    line-height:1.9;
+  }
+
+  .strip{
+    flex-wrap:wrap;
+  }
+
+  .strip img{
+    width:62px;
+    height:62px;
+  }
+
+  /* PAGE 3 */
+  .p3-img{
+    width:180px;
+  }
+
+  .song-title{
+    font-size:34px;
+  }
+
+  .song-grid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .song-card .sname{
+    font-size:14px;
+  }
+
+  .song-card .sartist{
+    font-size:8px;
+  }
+
+  /* BUTTON */
+  .nxt{
+    bottom:20px;
+    right:20px;
+    padding:8px 18px;
+    font-size:9px;
+    letter-spacing:2px;
+  }
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+img{
+  max-width:100%;
+  height:auto;
 }
 </style>
 </head>
